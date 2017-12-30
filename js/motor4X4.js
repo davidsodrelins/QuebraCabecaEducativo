@@ -1,6 +1,23 @@
 //desenvolvido por David Sodré Lins
 //davidsodre_ba@hotmail.com - 12/2017
 //uso livre
+window.onload = function() {
+		
+		var carregarImagemJs = document.getElementById("carregar_imagem");
+			carregarImagemJs.onclick = function () {
+			carregarImagem();
+		};
+				
+		var sequencia = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15'];
+		sequencia = embaralhar(sequencia);
+		tabuleiro = '<table>   <tr>      <td id="c01" onclick="celulaClicada(1)"><input type="image" src="./temp/pedaco' + sequencia[0] + '.jpg" id="b1"  /></td>      <td id="c02" onclick="celulaClicada(2)"><input type="image" src="./temp/pedaco' + sequencia[1] + '.jpg" id="b2"  /></td>      <td id="c03" onclick="celulaClicada(3)"><input type="image" src="./temp/pedaco' + sequencia[2] + '.jpg" id="b3"  /></td>      <td id="c04" onclick="celulaClicada(4)"><input type="image" src="./temp/pedaco' + sequencia[3] + '.jpg" id="b4"  /></td>   </tr>   <tr>      <td id="c05" onclick="celulaClicada(5)"><input type="image" src="./temp/pedaco' + sequencia[4] + '.jpg" id="b5"  /></td>      <td id="c06" onclick="celulaClicada(6)"><input type="image" src="./temp/pedaco' + sequencia[5] + '.jpg" id="b6" /></td>      <td id="c07" onclick="celulaClicada(7)"><input type="image" src="./temp/pedaco' + sequencia[6] + '.jpg" id="b7" /></td>      <td id="c08" onclick="celulaClicada(8)"><input type="image" src="./temp/pedaco' + sequencia[7] + '.jpg" id="b8" /></td>   </tr>   <tr>      <td id="c09" onclick="celulaClicada(9)"><input type="image" src="./temp/pedaco' + sequencia[8] + '.jpg" id="b9"  /></td>      <td id="c10" onclick="celulaClicada(10)"><input type="image" src="./temp/pedaco' + sequencia[9] + '.jpg" id="b10" /></td>      <td id="c11" onclick="celulaClicada(11)"><input type="image" src="./temp/pedaco' + sequencia[10] + '.jpg" id="b11" /></td>      <td id="c12" onclick="celulaClicada(12)"><input type="image" src="./temp/pedaco' + sequencia[11] + '.jpg" id="b12" /></td>   </tr>   <tr>      <td id="c13" onclick="celulaClicada(13)"><input type="image" src="./temp/pedaco' + sequencia[12] + '.jpg" id="b13"  /></td>      <td id="c14" onclick="celulaClicada(14)"><input type="image" src="./temp/pedaco' + sequencia[13] + '.jpg" id="b14" /></td>      <td id="c15" onclick="celulaClicada(15)"><input type="image" src="./temp/pedaco' + sequencia[14] + '.jpg" id="b15" /></td>      <td id="c16" onclick="celulaClicada(16)"><input type="image" src="./temp/pedaco' + sequencia[15] + '.jpg" id="b16" /></td>   </tr></table>';
+		legenda =   '<input type="image" src="./img/temp.jpg"  width=300 high=300 />';
+		document.getElementById("puzzle").innerHTML = tabuleiro;
+		document.getElementById("legend").innerHTML = legenda;
+
+		inicio();
+
+}
 
 function CriaRequest() {
     try {
@@ -25,12 +42,15 @@ function CriaRequest() {
 function carregarImagem() {
     var xmlreq = CriaRequest();
 
-    xmlreq.open("GET", "php/corta4x4.php", true);
+	var local = document.getElementById("local");
+
+    xmlreq.open("GET", "php/corta4x4.php?local=" + local.value, true);
 
     xmlreq.onreadystatechange = function () {
         if (xmlreq.readyState == 4) {
             if (xmlreq.status == 200) {
-			   //alert("Se a imagem não aparecer, pressione F5 ou atualize a página.");
+			   alert("Bom jogo!");
+               window.location.href = ("index.html");
             }
         }
     };
@@ -38,20 +58,6 @@ function carregarImagem() {
 }
 
 
-window.onload = function() {
-		carregarImagem();
-		
-		var sequencia = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15'];
-		sequencia = embaralhar(sequencia);
-		tabuleiro = '<table>   <tr>      <td id="c01" onclick="celulaClicada(1)"><input type="image" src="./temp/pedaco' + sequencia[0] + '.jpg" id="b1"  /></td>      <td id="c02" onclick="celulaClicada(2)"><input type="image" src="./temp/pedaco' + sequencia[1] + '.jpg" id="b2"  /></td>      <td id="c03" onclick="celulaClicada(3)"><input type="image" src="./temp/pedaco' + sequencia[2] + '.jpg" id="b3"  /></td>      <td id="c04" onclick="celulaClicada(4)"><input type="image" src="./temp/pedaco' + sequencia[3] + '.jpg" id="b4"  /></td>   </tr>   <tr>      <td id="c05" onclick="celulaClicada(5)"><input type="image" src="./temp/pedaco' + sequencia[4] + '.jpg" id="b5"  /></td>      <td id="c06" onclick="celulaClicada(6)"><input type="image" src="./temp/pedaco' + sequencia[5] + '.jpg" id="b6" /></td>      <td id="c07" onclick="celulaClicada(7)"><input type="image" src="./temp/pedaco' + sequencia[6] + '.jpg" id="b7" /></td>      <td id="c08" onclick="celulaClicada(8)"><input type="image" src="./temp/pedaco' + sequencia[7] + '.jpg" id="b8" /></td>   </tr>   <tr>      <td id="c09" onclick="celulaClicada(9)"><input type="image" src="./temp/pedaco' + sequencia[8] + '.jpg" id="b9"  /></td>      <td id="c10" onclick="celulaClicada(10)"><input type="image" src="./temp/pedaco' + sequencia[9] + '.jpg" id="b10" /></td>      <td id="c11" onclick="celulaClicada(11)"><input type="image" src="./temp/pedaco' + sequencia[10] + '.jpg" id="b11" /></td>      <td id="c12" onclick="celulaClicada(12)"><input type="image" src="./temp/pedaco' + sequencia[11] + '.jpg" id="b12" /></td>   </tr>   <tr>      <td id="c13" onclick="celulaClicada(13)"><input type="image" src="./temp/pedaco' + sequencia[12] + '.jpg" id="b13"  /></td>      <td id="c14" onclick="celulaClicada(14)"><input type="image" src="./temp/pedaco' + sequencia[13] + '.jpg" id="b14" /></td>      <td id="c15" onclick="celulaClicada(15)"><input type="image" src="./temp/pedaco' + sequencia[14] + '.jpg" id="b15" /></td>      <td id="c16" onclick="celulaClicada(16)"><input type="image" src="./temp/pedaco' + sequencia[15] + '.jpg" id="b16" /></td>   </tr></table>';
-		legenda =   '<input type="image" src="./img/temp.jpg"  width=300 high=300 />';
-
-		document.getElementById("puzzle").innerHTML = tabuleiro;
-		document.getElementById("legend").innerHTML = legenda;
-
-		inicio();
-
-}
 
 
 

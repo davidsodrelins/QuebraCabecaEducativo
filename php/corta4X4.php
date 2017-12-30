@@ -1,8 +1,8 @@
 <?php
 require ('../lib/WideImage.php');
 
-$local = "C:\Users\DS\Pictures\arie 3.jpg";
-
+//$local = "https://http2.mlstatic.com/papel-de-parede-auto-adesivo-decoraco-vingadores-marvel-9m-D_NQ_NP_246801-MLB20418630371_092015-F.jpg";
+$local = $_GET['local'];
 $tamanho = 600; //EM PIXELS 600px
 $image = WideImage::load($local); // Carrega a imagem a ser manipulada
 $resized = $image->resize($tamanho, $tamanho, 'fill'); //ajusta para o tamanho exato solicitado
